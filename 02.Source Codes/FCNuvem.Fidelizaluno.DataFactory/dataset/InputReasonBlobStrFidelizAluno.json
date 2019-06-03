@@ -1,0 +1,54 @@
+{
+	"name": "InputReasonBlobStrFidelizAluno",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MLBlobStrFidelizAluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureBlob",
+		"structure": [
+			{
+				"name": "id",
+				"type": "Int32"
+			},
+			{
+				"name": "idstudent",
+				"type": "Int32"
+			},
+			{
+				"name": "date",
+				"type": "DateTime"
+			},
+			{
+				"name": "amountpaymentpendent",
+				"type": "Int32"
+			},
+			{
+				"name": "distance",
+				"type": "Decimal"
+			},
+			{
+				"name": "evasionscore",
+				"type": "Decimal"
+			},
+			{
+				"name": "mediascore",
+				"type": "Decimal"
+			}
+		],
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"encodingName": null,
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": true
+			},
+			"fileName": "StudentReasonInputMLData.csv",
+			"folderPath": "inputmldata"
+		}
+	}
+}

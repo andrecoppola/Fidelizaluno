@@ -1,0 +1,244 @@
+{
+	"name": "FidelizAluno-CalculateStudentEvasion",
+	"properties": {
+		"activities": [
+			{
+				"name": "MLCalculateEvasion",
+				"type": "AzureMLBatchExecution",
+				"dependsOn": [
+					{
+						"activity": "DeleteOutputML",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"webServiceInputs": {
+						"FidelizaAlunoInput": {
+							"filePath": "inputmldata/StudentInputMLData.csv",
+							"linkedServiceName": {
+								"referenceName": "MLBlobStrFidelizAluno",
+								"type": "LinkedServiceReference"
+							}
+						}
+					},
+					"webServiceOutputs": {
+						"FidelizaAlunoOutput": {
+							"filePath": "outputmldata/StudentOutputMLData.csv",
+							"linkedServiceName": {
+								"referenceName": "MLBlobStrFidelizAluno",
+								"type": "LinkedServiceReference"
+							}
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureMLFidelizAluno",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "DeleteMLInputData",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "SaveHistoricMLData",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "MLBlobStrFidelizAluno",
+						"type": "DatasetReference"
+					},
+					"enableLogging": false
+				}
+			},
+			{
+				"name": "CopyFromADLSToBlobStorage",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "DeleteInputMLIfExist",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"source": {
+						"type": "SqlSource",
+						"sqlReaderQuery": "SELECT [Id]\n      ,[RA]\n      ,[EvasionScore]\n      ,[PaymentDay]\n      ,[LastPaymentDate]\n      ,[AmountPaymentPendent]\n      ,[Distance]\n      ,[MediaScore]\n      ,[IdPerson]\n      ,[Overdue]\n      ,CASE WHEN [Id] % 2 <= 0 THEN 0 WHEN [Id] % 2 > 0 THEN 1 END AS [CurrentSituation]\n\t  ,GETDATE() as [CurrentDate]\n  FROM [dbo].[Student]"
+					},
+					"sink": {
+						"type": "BlobSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"Id": "id",
+							"RA": "ra",
+							"EvasionScore": "evasionscore",
+							"PaymentDay": "paymentday",
+							"LastPaymentDate": "lastpaymentdate",
+							"AmountPaymentPendent": "amountpaymentpendent",
+							"Distance": "distance",
+							"MediaScore": "mediascore",
+							"IdPerson": "idperson",
+							"Overdue": "overdue",
+							"CurrentSituation": "currentsituation",
+							"CurrentDate": "currentdate"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DBFidelizAlunoStudentDataSet",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "InputBlobStrFidelizAluno",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "SaveHistoricMLData",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "MLCalculateEvasion",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "outputmldata/outputml.csv"
+					},
+					{
+						"name": "Destination",
+						"value": "[dbo].[EvasionHistory]"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "BlobSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000,
+						"sqlWriterStoredProcedureName": "[dbo].[INSERT_UPDATE_STUDENT_EVASION]",
+						"sqlWriterTableType": "EvasionHistoryType"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"ra": "Id",
+							"id": "IdStudent",
+							"currentdate": "Date",
+							"amountpaymentpendent": "AmountPaymentPendent",
+							"distance": "Distance",
+							"Scored Probabilities for Class \"0\"": "EvasionScore",
+							"mediascore": "MediaScore"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "MLBlobStrFidelizAluno",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DBFidelizAlunoMLHistory",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "DeleteInputMLIfExist",
+				"type": "Delete",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "InputBlobStrFidelizAluno",
+						"type": "DatasetReference"
+					},
+					"enableLogging": false
+				}
+			},
+			{
+				"name": "DeleteOutputML",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "CopyFromADLSToBlobStorage",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "MLBlobStrFidelizAluno",
+						"type": "DatasetReference"
+					},
+					"enableLogging": false
+				}
+			}
+		]
+	}
+}

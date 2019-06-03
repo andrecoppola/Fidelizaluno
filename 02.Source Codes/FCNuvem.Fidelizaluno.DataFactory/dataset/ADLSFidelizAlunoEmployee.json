@@ -1,0 +1,42 @@
+{
+	"name": "ADLSFidelizAlunoEmployee",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adlsfidelizaluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureDataLakeStoreFile",
+		"structure": [
+			{
+				"name": "id",
+				"type": "Int32"
+			},
+			{
+				"name": "idrole",
+				"type": "Int32"
+			},
+			{
+				"name": "idlogin",
+				"type": "Int32"
+			},
+			{
+				"name": "idpreson",
+				"type": "Int32"
+			}
+		],
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"encodingName": null,
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": true
+			},
+			"fileName": "Employee-*.csv",
+			"folderPath": "fidelizaluno/input"
+		}
+	}
+}

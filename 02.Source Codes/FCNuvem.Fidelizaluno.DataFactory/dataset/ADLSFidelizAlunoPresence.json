@@ -1,0 +1,50 @@
+{
+	"name": "ADLSFidelizAlunoPresence",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adlsfidelizaluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureDataLakeStoreFile",
+		"structure": [
+			{
+				"name": "id",
+				"type": "Int32"
+			},
+			{
+				"name": "idstudent",
+				"type": "Int32"
+			},
+			{
+				"name": "data",
+				"type": "DateTime"
+			},
+			{
+				"name": "presence",
+				"type": "Boolean"
+			},
+			{
+				"name": "period",
+				"type": "Int32"
+			},
+			{
+				"name": "idclass",
+				"type": "Int32"
+			}
+		],
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"encodingName": null,
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": true
+			},
+			"fileName": "Presence-*.csv",
+			"folderPath": "fidelizaluno/input"
+		}
+	}
+}

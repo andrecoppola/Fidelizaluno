@@ -1,0 +1,39 @@
+// Base
+@import 'app/assets/sass/base/variables';
+@import 'app/assets/sass/base/global';
+@import 'app/assets/sass/base/grid';
+
+// Includes
+@import 'app/assets/sass/includes/header';
+@import 'app/assets/sass/includes/footer';
+
+// Components
+@import 'app/assets/sass/components/form/form';
+@import 'app/assets/sass/components/form/checkbox';
+
+@import 'app/assets/sass/components/breadcrumb';
+@import 'app/assets/sass/components/filter';
+@import 'app/assets/sass/components/plugins';
+@import 'app/assets/sass/components/scroll';
+@import 'app/assets/sass/components/table';
+
+.chatbot {
+    display: absolute;
+    right: -100%;
+}
+
+
+.fa, .fas {
+    font-weight: 800;
+    font-size: 25px;
+}
+
+.fa-power-off {
+    font-weight: 600;
+    font-size: 15px;
+    color: black;
+}
+
+iframe {
+    border: none!important;
+}

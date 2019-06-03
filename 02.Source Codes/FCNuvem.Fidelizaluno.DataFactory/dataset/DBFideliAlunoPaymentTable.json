@@ -1,0 +1,39 @@
+{
+	"name": "DBFideliAlunoPaymentTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaseFidelizAluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"structure": [
+			{
+				"name": "Id",
+				"type": "Int32"
+			},
+			{
+				"name": "Valor",
+				"type": "Decimal"
+			},
+			{
+				"name": "IdClassRoom",
+				"type": "Int32"
+			},
+			{
+				"name": "IdClass",
+				"type": "Int32"
+			},
+			{
+				"name": "IdStudent",
+				"type": "Int32"
+			},
+			{
+				"name": "Data",
+				"type": "DateTime"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[Payment]"
+		}
+	}
+}

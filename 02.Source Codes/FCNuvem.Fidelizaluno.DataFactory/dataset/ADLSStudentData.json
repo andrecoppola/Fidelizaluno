@@ -1,0 +1,78 @@
+{
+	"name": "ADLSStudentData",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adlsfidelizaluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureDataLakeStoreFile",
+		"structure": [
+			{
+				"name": "turno_curso",
+				"type": "String"
+			},
+			{
+				"name": "naturalidade",
+				"type": "String"
+			},
+			{
+				"name": "estado_natal",
+				"type": "String"
+			},
+			{
+				"name": "cidade",
+				"type": "String"
+			},
+			{
+				"name": "estado",
+				"type": "String"
+			},
+			{
+				"name": "idade",
+				"type": "String"
+			},
+			{
+				"name": "sexo",
+				"type": "String"
+			},
+			{
+				"name": "estado_civil",
+				"type": "String"
+			},
+			{
+				"name": "cor_raca",
+				"type": "String"
+			},
+			{
+				"name": "grau_instrucao",
+				"type": "Int32"
+			},
+			{
+				"name": "tipo_origem_escola",
+				"type": "Int32"
+			},
+			{
+				"name": "situacao_ocupacional",
+				"type": "Int32"
+			},
+			{
+				"name": "tipo_gratuidade",
+				"type": "Int32"
+			}
+		],
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"encodingName": null,
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": true
+			},
+			"fileName": "StudentData-*.csv",
+			"folderPath": "fidelizaluno/output"
+		}
+	}
+}

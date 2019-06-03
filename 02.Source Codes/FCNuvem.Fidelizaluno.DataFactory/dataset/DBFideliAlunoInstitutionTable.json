@@ -1,0 +1,47 @@
+{
+	"name": "DBFideliAlunoInstitutionTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaseFidelizAluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"structure": [
+			{
+				"name": "Id",
+				"type": "Int32"
+			},
+			{
+				"name": "Name",
+				"type": "String"
+			},
+			{
+				"name": "TradingName",
+				"type": "String"
+			},
+			{
+				"name": "Cnpj",
+				"type": "String"
+			},
+			{
+				"name": "Telephone",
+				"type": "String"
+			},
+			{
+				"name": "Email",
+				"type": "String"
+			},
+			{
+				"name": "Media",
+				"type": "String"
+			},
+			{
+				"name": "IdAddress",
+				"type": "Int32"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[Institution]"
+		}
+	}
+}

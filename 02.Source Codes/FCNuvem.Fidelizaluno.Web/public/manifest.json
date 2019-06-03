@@ -1,0 +1,35 @@
+{
+  "short_name": "Fideliza Aluno",
+  "name": "Fideliza Aluno",
+  "icons": [
+    {
+      "src": "icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "logo.jpeg",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "logo.jpeg",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "logo.jpeg",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "logo.jpeg",
+      "sizes": "256x256",
+      "type": "image"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#bb4530"
+}

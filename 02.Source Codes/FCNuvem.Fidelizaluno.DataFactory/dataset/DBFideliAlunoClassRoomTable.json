@@ -1,0 +1,47 @@
+{
+	"name": "DBFideliAlunoClassRoomTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaseFidelizAluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"structure": [
+			{
+				"name": "Id",
+				"type": "Int32"
+			},
+			{
+				"name": "Name",
+				"type": "String"
+			},
+			{
+				"name": "Half",
+				"type": "String"
+			},
+			{
+				"name": "DataInicial",
+				"type": "DateTime"
+			},
+			{
+				"name": "IdProgram",
+				"type": "Int32"
+			},
+			{
+				"name": "IdEmployee",
+				"type": "Int32"
+			},
+			{
+				"name": "IdPeriod",
+				"type": "Int32"
+			},
+			{
+				"name": "IdCampus",
+				"type": "Int32"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[ClassRoom]"
+		}
+	}
+}

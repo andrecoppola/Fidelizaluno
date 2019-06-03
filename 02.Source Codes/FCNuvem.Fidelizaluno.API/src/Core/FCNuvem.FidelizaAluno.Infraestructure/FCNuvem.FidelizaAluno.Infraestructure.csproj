@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20190322004051_UpdateClassRoomCampus.cs" />
+    <Compile Remove="Migrations\20190322004051_UpdateClassRoomCampus.Designer.cs" />
+    <Compile Remove="Migrations\20190322143120_FixPresenceClass.cs" />
+    <Compile Remove="Migrations\20190322143120_FixPresenceClass.Designer.cs" />
+    <Compile Remove="Migrations\20190322144123_UpdatePresence.cs" />
+    <Compile Remove="Migrations\20190322144123_UpdatePresence.Designer.cs" />
+    <Compile Remove="Migrations\20190322144429_UpdatePresence.cs" />
+    <Compile Remove="Migrations\20190322144429_UpdatePresence.Designer.cs" />
+    <Compile Remove="Migrations\20190322144719_UpdatePresence.cs" />
+    <Compile Remove="Migrations\20190322144719_UpdatePresence.Designer.cs" />
+    <Compile Remove="Migrations\20190322144943_UpdatePresence.cs" />
+    <Compile Remove="Migrations\20190322144943_UpdatePresence.Designer.cs" />
+    <Compile Remove="Migrations\20190326194741_UpdateReason.cs" />
+    <Compile Remove="Migrations\20190326194741_UpdateReason.Designer.cs" />
+    <Compile Remove="Migrations\20190326200739_FixReason.cs" />
+    <Compile Remove="Migrations\20190326200739_FixReason.Designer.cs" />
+    <Compile Remove="Migrations\20190326205201_UpdateReason.cs" />
+    <Compile Remove="Migrations\20190326205201_UpdateReason.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FCNuvem.FidelizaAluno.Core\FCNuvem.FidelizaAluno.Core.csproj" />
+  </ItemGroup>
+
+</Project>

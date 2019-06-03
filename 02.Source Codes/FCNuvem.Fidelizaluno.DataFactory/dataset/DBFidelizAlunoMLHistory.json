@@ -1,0 +1,57 @@
+{
+	"name": "DBFidelizAlunoMLHistory",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaseFidelizAluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"structure": [
+			{
+				"name": "Id",
+				"type": "Int32",
+				"precision": 10,
+				"scale": 255
+			},
+			{
+				"name": "IdStudent",
+				"type": "Int32",
+				"precision": 10,
+				"scale": 255
+			},
+			{
+				"name": "Date",
+				"type": "DateTime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "AmountPaymentPendent",
+				"type": "Int32",
+				"precision": 10,
+				"scale": 255
+			},
+			{
+				"name": "Distance",
+				"type": "Decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "EvasionScore",
+				"type": "Decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "MediaScore",
+				"type": "Decimal",
+				"precision": 18,
+				"scale": 2
+			}
+		],
+		"typeProperties": {
+			"tableName": "historyevasion"
+		}
+	}
+}

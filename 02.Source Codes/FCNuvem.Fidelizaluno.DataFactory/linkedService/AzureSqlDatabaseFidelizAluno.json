@@ -1,0 +1,11 @@
+{
+	"name": "AzureSqlDatabaseFidelizAluno",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": "{connectionString}",
+			"encryptedCredential": "{encryptedCredential}"
+		}
+	}
+}

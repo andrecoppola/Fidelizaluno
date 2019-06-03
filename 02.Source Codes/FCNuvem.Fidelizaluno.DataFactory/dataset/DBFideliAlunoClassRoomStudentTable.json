@@ -1,0 +1,27 @@
+{
+	"name": "DBFideliAlunoClassRoomStudentTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaseFidelizAluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"structure": [
+			{
+				"name": "Id",
+				"type": "Int32"
+			},
+			{
+				"name": "IdStudent",
+				"type": "Int32"
+			},
+			{
+				"name": "IdClassRoom",
+				"type": "Int32"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[ClassRoomStudent]"
+		}
+	}
+}

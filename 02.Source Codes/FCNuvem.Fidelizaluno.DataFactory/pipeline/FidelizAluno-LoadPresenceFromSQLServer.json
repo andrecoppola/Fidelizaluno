@@ -1,0 +1,55 @@
+{
+	"name": "FidelizAluno-LoadPresenceFromSQLServer",
+	"properties": {
+		"activities": [
+			{
+				"name": "CopyPresenceToADLS",
+				"type": "Copy",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"source": {
+						"type": "SqlSource"
+					},
+					"sink": {
+						"type": "AzureDataLakeStoreSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"IdClass": "IdClass",
+							"Id": "IdDegree",
+							"IdStudent": "IdStudent",
+							"Data": "Data",
+							"Presence": "Presence"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DBFidelizAlunoPresenceTable",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ADLSOutputPresenceFiles",
+						"type": "DatasetReference",
+						"parameters": {
+							"PipelineDateTime": {
+								"value": "@replace(replace(trigger().startTime,':','-'),'.','-')",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		]
+	}
+}

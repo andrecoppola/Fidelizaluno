@@ -1,0 +1,12 @@
+// Plugins
+.Menu-toolbar-5{
+    //display: none;
+}
+.MuiAppBar-colorPrimary-15,
+.MuiAppBar-colorPrimary-231{
+    background-color: transparent !important;
+
+    @media (max-width: 900px) {
+        background-color: #ffffff !important;
+    }
+}

@@ -1,0 +1,131 @@
+.Link {
+    color: black;
+    font-size: 1em;
+    text-align: left;
+    width: 100%;
+}
+
+.textS {
+    color: #666666;
+    font-size: 1.1em;
+    font-weight: normal;
+}
+
+.textLabel{
+    font-weight: bold !important;
+    color: #000000 !important;
+}
+
+.titlePainel {
+    text-shadow: 3px 5px 10px;
+    margin-top: 0%;
+    margin-bottom: 6%;
+    font-size: 1.6em;
+    color: #000;
+}
+
+@media (max-width: 800px) {
+
+    .ExpandAluno {
+        width: 100% !important;
+        text-align: initial;
+    }
+
+    .Next {
+        display: none;
+    }
+    .expand {
+        display: inline !important;
+    }
+    .Link {
+        color: black;
+        font-size: 1em;
+        text-align: left;
+        margin-left: 1%;
+        width: 100%;
+    }
+    .Number {
+        height: 2em;
+        font-size: 1.6em !important;
+        color: #fff;
+        font-weight: 900;
+    }
+
+    .badge {
+        margin: 4% !important;
+        right: 28% !important;
+    }
+}
+
+.badge {
+    margin: 1.2%;
+    right: 10%;
+
+    span {
+        background: #b10000;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        top: 5px;
+    }
+}
+
+.Number {
+    height: 2em;
+    font-size: 2em;
+    color: #fff;
+    font-weight: 900;
+}
+
+.expand {
+    width: 100%;
+    display: -webkit-inline-box;
+}
+
+.ExpandAluno {
+    width: 25%;
+}
+
+.Next {
+    color: black;
+    font-size: 1em;
+    text-align: center;
+    margin-left: 30%;
+    margin-top: 12px;
+    width: 10px;
+}
+
+.Tela {
+    width: 90%;
+    margin-left: 5%;
+}
+
+// Cursos
+.cursos {
+    margin-top: 50px;
+    width: 100%;
+
+    h3 {
+        font-size: 16px;
+        color: #666666;
+    }
+}
+
+// Tabs
+.cursosTab {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    border-bottom: 1px solid #cccccc;
+    & > div {
+    }
+    &:before {
+        background: transparent !important;
+    }
+}
+
+.cursosSubTab {
+    box-shadow: none !important;
+    padding: 0 0 0 30px;
+    border-top: 1px solid rgba(204, 204, 204, 0.45);
+    box-shadow: 0px -8px 10px -6px rgba(204, 204, 204, 0.52) !important;
+}

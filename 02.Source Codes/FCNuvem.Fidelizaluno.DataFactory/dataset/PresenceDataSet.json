@@ -1,0 +1,55 @@
+{
+	"name": "PresenceDataSet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adlsfidelizaluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureDataLakeStoreFile",
+		"structure": [
+			{
+				"name": "Id",
+				"type": "String"
+			},
+			{
+				"name": "IdClass",
+				"type": "String"
+			},
+			{
+				"name": "IdDegree",
+				"type": "String"
+			},
+			{
+				"name": "IdStudent",
+				"type": "String"
+			},
+			{
+				"name": "Data",
+				"type": "String"
+			},
+			{
+				"name": "Presence",
+				"type": "String"
+			},
+			{
+				"name": "Period",
+				"type": "String"
+			}
+		],
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"quoteChar": "\"",
+				"nullValue": "\\N",
+				"encodingName": null,
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": true
+			},
+			"fileName": "InputData*.csv",
+			"folderPath": "fidelizaluno/output"
+		}
+	}
+}

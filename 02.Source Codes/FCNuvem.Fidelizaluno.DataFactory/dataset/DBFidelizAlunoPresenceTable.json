@@ -1,0 +1,35 @@
+{
+	"name": "DBFidelizAlunoPresenceTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaseFidelizAluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"structure": [
+			{
+				"name": "Id",
+				"type": "Int32"
+			},
+			{
+				"name": "IdStudent",
+				"type": "Int32"
+			},
+			{
+				"name": "Data",
+				"type": "DateTime"
+			},
+			{
+				"name": "Presence",
+				"type": "Boolean"
+			},
+			{
+				"name": "IdClass",
+				"type": "Int32"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[Presence]"
+		}
+	}
+}

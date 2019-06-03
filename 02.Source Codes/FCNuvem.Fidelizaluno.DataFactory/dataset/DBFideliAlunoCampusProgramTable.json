@@ -1,0 +1,27 @@
+{
+	"name": "DBFideliAlunoCampusProgramTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaseFidelizAluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"structure": [
+			{
+				"name": "Id",
+				"type": "Int32"
+			},
+			{
+				"name": "IdCampus",
+				"type": "Int32"
+			},
+			{
+				"name": "IdProgram",
+				"type": "Int32"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[CampusProgram]"
+		}
+	}
+}

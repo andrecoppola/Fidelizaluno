@@ -1,0 +1,35 @@
+{
+	"name": "DBFideliAlunoClassTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaseFidelizAluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"structure": [
+			{
+				"name": "Id",
+				"type": "Int32"
+			},
+			{
+				"name": "IdDegree",
+				"type": "Int32"
+			},
+			{
+				"name": "ClassDate",
+				"type": "DateTime"
+			},
+			{
+				"name": "StartTime",
+				"type": "TimeSpan"
+			},
+			{
+				"name": "EndTime",
+				"type": "TimeSpan"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[Class]"
+		}
+	}
+}

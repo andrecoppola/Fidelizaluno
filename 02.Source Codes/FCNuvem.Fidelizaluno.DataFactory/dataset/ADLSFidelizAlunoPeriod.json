@@ -1,0 +1,34 @@
+{
+	"name": "ADLSFidelizAlunoPeriod",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adlsfidelizaluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureDataLakeStoreFile",
+		"structure": [
+			{
+				"name": "id",
+				"type": "Int32"
+			},
+			{
+				"name": "description",
+				"type": "String"
+			}
+		],
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"encodingName": null,
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": true
+			},
+			"fileName": "Period*.csv",
+			"folderPath": "fidelizaluno/input"
+		}
+	}
+}

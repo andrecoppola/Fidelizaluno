@@ -1,0 +1,58 @@
+{
+	"name": "ADLSFidelizAlunoClassRoom",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adlsfidelizaluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureDataLakeStoreFile",
+		"structure": [
+			{
+				"name": "id",
+				"type": "Int32"
+			},
+			{
+				"name": "name",
+				"type": "String"
+			},
+			{
+				"name": "half",
+				"type": "String"
+			},
+			{
+				"name": "datainicial",
+				"type": "DateTime"
+			},
+			{
+				"name": "idprogram",
+				"type": "Int32"
+			},
+			{
+				"name": "idemployee",
+				"type": "Int32"
+			},
+			{
+				"name": "idperiod",
+				"type": "Int32"
+			},
+			{
+				"name": "idcampus",
+				"type": "Int32"
+			}
+		],
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"encodingName": null,
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": true
+			},
+			"fileName": "ClassRoom-*.csv",
+			"folderPath": "fidelizaluno/input"
+		}
+	}
+}

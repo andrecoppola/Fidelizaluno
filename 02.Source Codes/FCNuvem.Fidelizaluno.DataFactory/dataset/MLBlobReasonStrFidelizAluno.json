@@ -1,0 +1,83 @@
+{
+	"name": "MLBlobReasonStrFidelizAluno",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MLBlobStrFidelizAluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureBlob",
+		"structure": [
+			{
+				"name": "id",
+				"type": "Int32"
+			},
+			{
+				"name": "idstudent",
+				"type": "Int32"
+			},
+			{
+				"name": "date",
+				"type": "DateTime"
+			},
+			{
+				"name": "amountpaymentpendent",
+				"type": "Int32"
+			},
+			{
+				"name": "distance",
+				"type": "Decimal"
+			},
+			{
+				"name": "evasionscore",
+				"type": "Decimal"
+			},
+			{
+				"name": "mediascore",
+				"type": "Decimal"
+			},
+			{
+				"name": "Scored Probabilities for Class \"1\"",
+				"type": "Decimal"
+			},
+			{
+				"name": "Scored Probabilities for Class \"2\"",
+				"type": "Decimal"
+			},
+			{
+				"name": "Scored Probabilities for Class \"3\"",
+				"type": "Decimal"
+			},
+			{
+				"name": "Scored Probabilities for Class \"4\"",
+				"type": "Decimal"
+			},
+			{
+				"name": "Scored Probabilities for Class \"5\"",
+				"type": "Decimal"
+			},
+			{
+				"name": "Scored Probabilities for Class \"6\"",
+				"type": "Decimal"
+			},
+			{
+				"name": "Scored Labels",
+				"type": "Decimal"
+			}
+		],
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"quoteChar": "\"",
+				"nullValue": "\\N",
+				"encodingName": null,
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": true
+			},
+			"fileName": "StudentReasonOutputMLData.csv",
+			"folderPath": "outputmldata"
+		}
+	}
+}

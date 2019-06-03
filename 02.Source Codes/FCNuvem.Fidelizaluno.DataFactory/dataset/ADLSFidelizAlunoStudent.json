@@ -1,0 +1,70 @@
+{
+	"name": "ADLSFidelizAlunoStudent",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adlsfidelizaluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureDataLakeStoreFile",
+		"structure": [
+			{
+				"name": "id",
+				"type": "Int32"
+			},
+			{
+				"name": "ra",
+				"type": "Int32"
+			},
+			{
+				"name": "evasionscore",
+				"type": "Decimal"
+			},
+			{
+				"name": "paymentday",
+				"type": "String"
+			},
+			{
+				"name": "lastpaymentdate",
+				"type": "DateTime"
+			},
+			{
+				"name": "amountpaymentpendent",
+				"type": "Int32"
+			},
+			{
+				"name": "distance",
+				"type": "Decimal"
+			},
+			{
+				"name": "mediascore",
+				"type": "Decimal"
+			},
+			{
+				"name": "idperson",
+				"type": "Int32"
+			},
+			{
+				"name": "overdue",
+				"type": "Boolean"
+			},
+			{
+				"name": "enrolled",
+				"type": "Boolean"
+			}
+		],
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"encodingName": null,
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": true
+			},
+			"fileName": "Student-*.csv",
+			"folderPath": "fidelizaluno/input"
+		}
+	}
+}

@@ -1,0 +1,11 @@
+{
+	"name": "MLBlobStrFidelizAluno",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"connectionString": "{connectionString}",
+			"encryptedCredential": "{encryptedCredential}"
+		}
+	}
+}

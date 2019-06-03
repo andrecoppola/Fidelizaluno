@@ -1,0 +1,50 @@
+{
+	"name": "ADLSFidelizAlunoScore",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adlsfidelizaluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureDataLakeStoreFile",
+		"structure": [
+			{
+				"name": "id",
+				"type": "Int32"
+			},
+			{
+				"name": "idcourse",
+				"type": "Int32"
+			},
+			{
+				"name": "idstudent",
+				"type": "Int32"
+			},
+			{
+				"name": "value",
+				"type": "Decimal"
+			},
+			{
+				"name": "data",
+				"type": "DateTime"
+			},
+			{
+				"name": "half",
+				"type": "String"
+			}
+		],
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"encodingName": null,
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": true
+			},
+			"fileName": "Score-*.csv",
+			"folderPath": "fidelizaluno/input"
+		}
+	}
+}

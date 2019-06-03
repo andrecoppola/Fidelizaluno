@@ -1,0 +1,62 @@
+{
+	"name": "ADLSFidelizAlunoCampus",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adlsfidelizaluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureDataLakeStoreFile",
+		"structure": [
+			{
+				"name": "id",
+				"type": "Int32"
+			},
+			{
+				"name": "name",
+				"type": "String"
+			},
+			{
+				"name": "cnpj",
+				"type": "String"
+			},
+			{
+				"name": "telephone",
+				"type": "String"
+			},
+			{
+				"name": "email",
+				"type": "String"
+			},
+			{
+				"name": "campustype",
+				"type": "Int32"
+			},
+			{
+				"name": "idinstitution",
+				"type": "Int32"
+			},
+			{
+				"name": "idinstituition",
+				"type": "Int32"
+			},
+			{
+				"name": "idaddress",
+				"type": "Int32"
+			}
+		],
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"encodingName": null,
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": true
+			},
+			"fileName": "Campus-*.csv",
+			"folderPath": "fidelizaluno/input"
+		}
+	}
+}

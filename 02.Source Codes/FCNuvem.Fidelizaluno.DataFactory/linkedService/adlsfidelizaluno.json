@@ -1,0 +1,15 @@
+{
+	"name": "adlsfidelizaluno",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "AzureDataLakeStore",
+		"typeProperties": {
+			"dataLakeStoreUri": "{dataLakeStoreUri}",
+			"servicePrincipalId": "{servicePrincipalId}",
+			"tenant": "{tenant}",
+			"subscriptionId": "{subscriptionId}",
+			"resourceGroupName": "Fidelizaluno",
+			"encryptedCredential": "{encryptedCredential}"
+		}
+	}
+}

@@ -1,0 +1,93 @@
+{
+	"name": "DBFidelizaAlunoReasonHistory",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaseFidelizAluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"structure": [
+			{
+				"name": "Id",
+				"type": "Int32",
+				"precision": 10,
+				"scale": 255
+			},
+			{
+				"name": "IdStudent",
+				"type": "Int32",
+				"precision": 10,
+				"scale": 255
+			},
+			{
+				"name": "Date",
+				"type": "DateTime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "AmountPaymentPendent",
+				"type": "Int32",
+				"precision": 10,
+				"scale": 255
+			},
+			{
+				"name": "Distance",
+				"type": "Decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "EvasionScore",
+				"type": "Decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "MediaScore",
+				"type": "Decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "ValueReason1",
+				"type": "Decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "ValueReason2",
+				"type": "Decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "ValueReason3",
+				"type": "Decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "ValueReason4",
+				"type": "Decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "ValueReason5",
+				"type": "Decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "ValueReason6",
+				"type": "Decimal",
+				"precision": 18,
+				"scale": 2
+			}
+		],
+		"typeProperties": {
+			"tableName": "evasionreason"
+		}
+	}
+}

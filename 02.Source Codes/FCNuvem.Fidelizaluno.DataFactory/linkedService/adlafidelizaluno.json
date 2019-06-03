@@ -1,0 +1,15 @@
+{
+	"name": "adlafidelizaluno",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "AzureDataLakeAnalytics",
+		"typeProperties": {
+			"accountName": "{accountName}",
+			"servicePrincipalId": "{servicePrincipalId}",
+			"tenant": "{tenant}",
+			"subscriptionId": "{subscriptionId}",
+			"resourceGroupName": "Fidelizaluno",
+			"encryptedCredential": "{encryptedCredential}"
+		}
+	}
+}

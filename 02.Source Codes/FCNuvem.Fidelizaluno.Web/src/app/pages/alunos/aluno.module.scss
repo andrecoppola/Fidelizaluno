@@ -1,0 +1,58 @@
+.avatar{
+    width: 240px;
+
+    @media (max-width: 1300px) {
+        width: 150px;
+    }
+}
+
+.aluno {
+    width: 50%;
+    margin: 50px auto 0 auto;
+    text-align: center;
+
+    @media (max-width: 900px) {
+        width: 100%;
+    }
+}
+
+.Percent {
+    border-right: 1px solid #333;
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+    padding: 10px 30px;
+
+    &:last-child{
+        border-right: 0;
+    }
+}
+
+.Evasao {
+    display: block;
+    margin: 3%;
+    font-size: 16px;
+}
+
+.Possibilidade {
+    text-align: center;
+    margin: 3%;
+    font-size: 17px;
+    color: #ff0a00;
+    border-bottom: 1px solid #000000;
+}
+.PossibilidadePorcentagem {
+  text-align: center;
+  margin: 3%;
+  padding: 14px;
+  font-size: 25px;
+  color: #ff0a00;
+  border-bottom: 1px solid #000000;
+}
+
+.form-input{
+    width: 100%;
+    div:before{
+        border-bottom-style: solid !important;
+    }
+}

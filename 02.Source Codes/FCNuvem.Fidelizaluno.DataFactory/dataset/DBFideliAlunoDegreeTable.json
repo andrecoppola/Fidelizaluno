@@ -1,0 +1,35 @@
+{
+	"name": "DBFideliAlunoDegreeTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaseFidelizAluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"structure": [
+			{
+				"name": "Id",
+				"type": "Int32"
+			},
+			{
+				"name": "IdCourse",
+				"type": "Int32"
+			},
+			{
+				"name": "IdClassRoom",
+				"type": "Int32"
+			},
+			{
+				"name": "IdEmployee",
+				"type": "Int32"
+			},
+			{
+				"name": "Load",
+				"type": "Int32"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[Degree]"
+		}
+	}
+}

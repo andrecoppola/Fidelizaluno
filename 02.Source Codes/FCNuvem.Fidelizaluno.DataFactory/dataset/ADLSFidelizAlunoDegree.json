@@ -1,0 +1,46 @@
+{
+	"name": "ADLSFidelizAlunoDegree",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adlsfidelizaluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureDataLakeStoreFile",
+		"structure": [
+			{
+				"name": "id",
+				"type": "Int32"
+			},
+			{
+				"name": "idcourse",
+				"type": "Int32"
+			},
+			{
+				"name": "idclassroom",
+				"type": "Int32"
+			},
+			{
+				"name": "idemployee",
+				"type": "Int32"
+			},
+			{
+				"name": "load",
+				"type": "Int32"
+			}
+		],
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"encodingName": null,
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": true
+			},
+			"fileName": "Degree-*-20.csv",
+			"folderPath": "fidelizaluno/input"
+		}
+	}
+}

@@ -1,0 +1,245 @@
+{
+	"name": "FidelizAluno-CalculateEvasionReason",
+	"properties": {
+		"activities": [
+			{
+				"name": "MLCalculateEvasion",
+				"type": "AzureMLBatchExecution",
+				"dependsOn": [
+					{
+						"activity": "DeleteOutputML",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"webServiceInputs": {
+						"FidelizaAlunoInput": {
+							"filePath": "inputmldata/StudentReasonInputMLData.csv",
+							"linkedServiceName": {
+								"referenceName": "MLBlobStrFidelizAluno",
+								"type": "LinkedServiceReference"
+							}
+						}
+					},
+					"webServiceOutputs": {
+						"FidelizaAlunoOutput": {
+							"filePath": "outputmldata/StudentReasonOutputMLData.csv",
+							"linkedServiceName": {
+								"referenceName": "MLBlobStrFidelizAluno",
+								"type": "LinkedServiceReference"
+							}
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureMLFIdelizAlunoReason",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "DeleteMLOutputData",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "SaveHistoricMLData",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "MLBlobReasonStrFidelizAluno",
+						"type": "DatasetReference"
+					},
+					"enableLogging": false
+				}
+			},
+			{
+				"name": "CopyFromADLSToBlobStorage",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "DeleteInputMLIfExist",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"source": {
+						"type": "SqlSource",
+						"sqlReaderQuery": "SELECT history.[Id]\n      ,[IdStudent]\n      ,[Date]\n      ,[AmountPaymentPendent]\n      ,[Distance]\n      ,[EvasionScore]\n      ,[MediaScore]\n  FROM [dbo].[EvasionHistory] history\n  left join ReasonEvasion reason on reason.IdEvasionHistory = history.Id\n  where reason.id is null"
+					},
+					"sink": {
+						"type": "BlobSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"Id": "id",
+							"IdStudent": "idstudent",
+							"Date": "date",
+							"AmountPaymentPendent": "amountpaymentpendent",
+							"Distance": "distance",
+							"EvasionScore": "evasionscore",
+							"MediaScore": "mediascore"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DBFidelizaAlunoReasonHistory",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "InputReasonBlobStrFidelizAluno",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "SaveHistoricMLData",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "MLCalculateEvasion",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "outputmldata/outputml.csv"
+					},
+					{
+						"name": "Destination",
+						"value": "[dbo].[EvasionHistory]"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "BlobSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000,
+						"sqlWriterStoredProcedureName": "[dbo].[INSERT_UPDATE_EVASION_REASON]",
+						"sqlWriterTableType": "EvasionReasonHistoryType"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"id": "Id",
+							"idstudent": "IdStudent",
+							"date": "Date",
+							"amountpaymentpendent": "AmountPaymentPendent",
+							"distance": "Distance",
+							"evasionscore": "EvasionScore",
+							"mediascore": "MediaScore",
+							"Scored Probabilities for Class \"1\"": "ValueReason1",
+							"Scored Probabilities for Class \"2\"": "ValueReason2",
+							"Scored Probabilities for Class \"3\"": "ValueReason3",
+							"Scored Probabilities for Class \"4\"": "ValueReason4",
+							"Scored Probabilities for Class \"5\"": "ValueReason5",
+							"Scored Probabilities for Class \"6\"": "ValueReason6"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "MLBlobReasonStrFidelizAluno",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DBFidelizaAlunoReasonHistory",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "DeleteInputMLIfExist",
+				"type": "Delete",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "InputReasonBlobStrFidelizAluno",
+						"type": "DatasetReference"
+					},
+					"enableLogging": false
+				}
+			},
+			{
+				"name": "DeleteOutputML",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "CopyFromADLSToBlobStorage",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "MLBlobReasonStrFidelizAluno",
+						"type": "DatasetReference"
+					},
+					"enableLogging": false
+				}
+			}
+		]
+	}
+}

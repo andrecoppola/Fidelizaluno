@@ -1,0 +1,39 @@
+{
+	"name": "DBFideliAlunoScoreTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaseFidelizAluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"structure": [
+			{
+				"name": "Id",
+				"type": "Int32"
+			},
+			{
+				"name": "IdCourse",
+				"type": "Int32"
+			},
+			{
+				"name": "IdStudent",
+				"type": "Int32"
+			},
+			{
+				"name": "Value",
+				"type": "Decimal"
+			},
+			{
+				"name": "Data",
+				"type": "DateTime"
+			},
+			{
+				"name": "Half",
+				"type": "String"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[Score]"
+		}
+	}
+}

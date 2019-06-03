@@ -1,0 +1,37 @@
+{
+    "intervaloMin":80,
+    "intervaloMax":100,
+    "totalAlunos": "80",
+    "Cursos":[
+        {
+            "nome": "Engenharia",
+            "totalAlunos": "40",
+            "Turmas":[{
+                "nome": "1A",
+                "totalAlunos": "20",
+                "alunos":[
+                {
+                    "id": 1234,
+                    "nome": "willian",
+                    "probalidade": 98,
+                    "motivo": "Distancia"
+                }]
+            }]
+        },
+        {
+            "nome": "ADM",
+            "totalAlunos": "40",
+            "Turmas":[{
+                "nome": "1A",
+                "totalAlunos": "60",
+                "alunos":[
+                {
+                    "id": 1234,
+                    "nome": "vitor",
+                    "probalidade": 87,
+                    "motivo": "Distancia"
+                }]
+            }]
+        }
+    ]
+}

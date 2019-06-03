@@ -1,0 +1,55 @@
+{
+	"name": "ADLSOutputPresenceFiles",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adlsfidelizaluno",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"PipelineDateTime": {
+				"type": "String"
+			}
+		},
+		"type": "AzureDataLakeStoreFile",
+		"structure": [
+			{
+				"name": "IdClass",
+				"type": "String"
+			},
+			{
+				"name": "IdDegree",
+				"type": "String"
+			},
+			{
+				"name": "IdStudent",
+				"type": "String"
+			},
+			{
+				"name": "Data",
+				"type": "String"
+			},
+			{
+				"name": "Presence",
+				"type": "String"
+			}
+		],
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"quoteChar": "\"",
+				"nullValue": "\\N",
+				"encodingName": null,
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": true
+			},
+			"fileName": {
+				"value": "@concat('OutputPresence-',dataset().PipelineDateTime)",
+				"type": "Expression"
+			},
+			"folderPath": "fidelizaluno/output"
+		}
+	}
+}

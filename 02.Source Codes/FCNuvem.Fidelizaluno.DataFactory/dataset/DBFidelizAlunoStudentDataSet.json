@@ -1,0 +1,87 @@
+{
+	"name": "DBFidelizAlunoStudentDataSet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaseFidelizAluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"structure": [
+			{
+				"name": "Id",
+				"type": "Int32",
+				"precision": 10,
+				"scale": 255
+			},
+			{
+				"name": "RA",
+				"type": "Int32",
+				"precision": 10,
+				"scale": 255
+			},
+			{
+				"name": "EvasionScore",
+				"type": "Decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "PaymentDay",
+				"type": "Int32",
+				"precision": 10,
+				"scale": 255
+			},
+			{
+				"name": "LastPaymentDate",
+				"type": "DateTime",
+				"precision": 255,
+				"scale": 7
+			},
+			{
+				"name": "AmountPaymentPendent",
+				"type": "Int32",
+				"precision": 10,
+				"scale": 255
+			},
+			{
+				"name": "Distance",
+				"type": "Decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "MediaScore",
+				"type": "Decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "IdPerson",
+				"type": "Int32",
+				"precision": 10,
+				"scale": 255
+			},
+			{
+				"name": "Overdue",
+				"type": "Boolean",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "CurrentSituation",
+				"type": "Int32",
+				"precision": 10,
+				"scale": 255
+			},
+			{
+				"name": "CurrentDate",
+				"type": "DateTime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[Presence]"
+		}
+	}
+}

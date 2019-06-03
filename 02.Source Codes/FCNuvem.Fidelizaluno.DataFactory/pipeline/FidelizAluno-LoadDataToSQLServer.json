@@ -1,0 +1,1174 @@
+{
+	"name": "FidelizAluno-LoadDataToSQLServer",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy Period",
+				"type": "Copy",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "fidelizaluno/output/"
+					},
+					{
+						"name": "Destination",
+						"value": "[dbo].[Presence]"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "AzureDataLakeStoreSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"id": "Id",
+							"description": "Description"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ADLSFidelizAlunoPeriod",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DBFideliAlunoPeriodTable",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "DeleteInputData",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "Copy Score",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ADLSFidelizAlunoInputData",
+						"type": "DatasetReference"
+					},
+					"enableLogging": false
+				}
+			},
+			{
+				"name": "Copy PersonType",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy Period",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "fidelizaluno/output/"
+					},
+					{
+						"name": "Destination",
+						"value": "[dbo].[Presence]"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "AzureDataLakeStoreSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"id": "Id",
+							"description": "Description"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ADLSFidelizAlunoPersonType",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DBFideliAlunoPersonTypeTable",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy Course",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy PersonType",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "fidelizaluno/output/"
+					},
+					{
+						"name": "Destination",
+						"value": "[dbo].[Presence]"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "AzureDataLakeStoreSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"id": "Id",
+							"name": "Name",
+							"time": "Time"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ADLSFidelizAlunoCourse",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DBFideliAlunoCourseTable",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy Address",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy Course",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "fidelizaluno/output/"
+					},
+					{
+						"name": "Destination",
+						"value": "[dbo].[Presence]"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "AzureDataLakeStoreSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"id": "Id",
+							"cep": "Cep",
+							"addressline1": "AddressLine1",
+							"addressline2": "AddressLine2",
+							"region": "Region",
+							"number": "Number",
+							"city": "City",
+							"state": "State",
+							"latitude": "Latitude",
+							"longitude": "Longitude"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ADLSFidelizAlunoAddress",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DBFideliAlunoAddressTable",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy Person",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy Address",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "fidelizaluno/output/"
+					},
+					{
+						"name": "Destination",
+						"value": "[dbo].[Presence]"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "AzureDataLakeStoreSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"id": "Id",
+							"name": "Name",
+							"email": "Email",
+							"cpf": "Cpf",
+							"telephone": "TelephoneCelular",
+							"telephoneresidencial": "TelephoneResidencial",
+							"genre": "Genre",
+							"urlpicture": "UrlPicture",
+							"reasonevasao": "ReasonEvasao",
+							"idaddress": "IdAddress"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ADLSFidelizAlunoPerson",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DBFideliAlunoPersonTable",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy Student",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy Person",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "fidelizaluno/output/"
+					},
+					{
+						"name": "Destination",
+						"value": "[dbo].[Presence]"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "AzureDataLakeStoreSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"id": "Id",
+							"ra": "RA",
+							"evasionscore": "EvasionScore",
+							"paymentday": "PaymentDay",
+							"lastpaymentdate": "LastPaymentDate",
+							"amountpaymentpendent": "AmountPaymentPendent",
+							"distance": "Distance",
+							"mediascore": "MediaScore",
+							"idperson": "IdPerson",
+							"overdue": "Overdue",
+							"enrolled": "Enrolled"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ADLSFidelizAlunoStudent",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DBFideliAlunoStudentTable",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy Employee",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy Student",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "fidelizaluno/output/"
+					},
+					{
+						"name": "Destination",
+						"value": "[dbo].[Presence]"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "AzureDataLakeStoreSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"id": "Id",
+							"idrole": "IdRole",
+							"idlogin": "IdLogin",
+							"idpreson": "IdPerson"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ADLSFidelizAlunoEmployee",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DBFideliAlunoEmployeeTable",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy Program",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy Employee",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "fidelizaluno/output/"
+					},
+					{
+						"name": "Destination",
+						"value": "[dbo].[Presence]"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "AzureDataLakeStoreSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"id": "Id",
+							"name": "Name",
+							"load": "Load",
+							"idcoodinator": "IdCoordinator"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ADLSFidelizAlunoProgram",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DBFideliAlunoProgramTable",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy Institution",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy Program",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "fidelizaluno/output/"
+					},
+					{
+						"name": "Destination",
+						"value": "[dbo].[Presence]"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "AzureDataLakeStoreSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"id": "Id",
+							"name": "Name",
+							"tradingname": "TradingName",
+							"cnpj": "Cnpj",
+							"telephone": "Telephone",
+							"email": "Email",
+							"media": "Media",
+							"idaddress": "IdAddress"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ADLSFidelizAlunoInstitution",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DBFideliAlunoInstitutionTable",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy Campus",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy Institution",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "fidelizaluno/output/"
+					},
+					{
+						"name": "Destination",
+						"value": "[dbo].[Presence]"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "AzureDataLakeStoreSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"id": "Id",
+							"name": "Name",
+							"cnpj": "Cnpj",
+							"telephone": "Telephone",
+							"email": "Email",
+							"campustype": "CampusType",
+							"idinstitution": "IdInstitution",
+							"idinstituition": "IdInstituition",
+							"idaddress": "IdAddress"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ADLSFidelizAlunoCampus",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DBFideliAlunoCampusTable",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy CampusProgram",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy Campus",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "fidelizaluno/output/"
+					},
+					{
+						"name": "Destination",
+						"value": "[dbo].[Presence]"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "AzureDataLakeStoreSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"id": "Id",
+							"idcampus": "IdCampus",
+							"idprogram": "IdProgram"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ADLSFidelizAlunoCampusProgram",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DBFideliAlunoCampusProgramTable",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy ClassRoom",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy CampusProgram",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "fidelizaluno/output/"
+					},
+					{
+						"name": "Destination",
+						"value": "[dbo].[Presence]"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "AzureDataLakeStoreSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"id": "Id",
+							"name": "Name",
+							"half": "Half",
+							"datainicial": "DataInicial",
+							"idprogram": "IdProgram",
+							"idemployee": "IdEmployee",
+							"idperiod": "IdPeriod",
+							"idcampus": "IdCampus"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ADLSFidelizAlunoClassRoom",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DBFideliAlunoClassRoomTable",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy ClassRoomStudent",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy ClassRoom",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "fidelizaluno/output/"
+					},
+					{
+						"name": "Destination",
+						"value": "[dbo].[Presence]"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "AzureDataLakeStoreSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"id": "Id",
+							"idstudent": "IdStudent",
+							"idclassroom": "IdClassRoom"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ADLSFidelizAlunoClassRoomStudent",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DBFideliAlunoClassRoomStudentTable",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy Payment",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy ClassRoomStudent",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "fidelizaluno/output/"
+					},
+					{
+						"name": "Destination",
+						"value": "[dbo].[Presence]"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "AzureDataLakeStoreSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"id": "Id",
+							"valor": "Valor",
+							"idclassroom": "IdClassRoom",
+							"idclass": "IdClass",
+							"idstudent": "IdStudent",
+							"data": "Data"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ADLSFidelizAlunoPayment",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DBFideliAlunoPaymentTable",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy Degree",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy Payment",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "fidelizaluno/output/"
+					},
+					{
+						"name": "Destination",
+						"value": "[dbo].[Presence]"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "AzureDataLakeStoreSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"id": "Id",
+							"idcourse": "IdCourse",
+							"idclassroom": "IdClassRoom",
+							"idemployee": "IdEmployee",
+							"load": "Load"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ADLSFidelizAlunoDegree",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DBFideliAlunoDegreeTable",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy Class",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy Degree",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "fidelizaluno/output/"
+					},
+					{
+						"name": "Destination",
+						"value": "[dbo].[Presence]"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "AzureDataLakeStoreSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"id": "Id",
+							"iddegree": "IdDegree",
+							"classdate": "ClassDate",
+							"starttime": "StartTime",
+							"endtime": "EndTime"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ADLSFidelizAlunoClass",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DBFideliAlunoClassTable",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy Presence",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy Class",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "fidelizaluno/output/"
+					},
+					{
+						"name": "Destination",
+						"value": "[dbo].[Presence]"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "AzureDataLakeStoreSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"id": "Id",
+							"idstudent": "IdStudent",
+							"data": "Data",
+							"presence": "Presence",
+							"period": "Period",
+							"idclass": "IdClass"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ADLSFidelizAlunoPresence",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DBFideliAlunoPresenceTable",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy Score",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy Presence",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "fidelizaluno/output/"
+					},
+					{
+						"name": "Destination",
+						"value": "[dbo].[Presence]"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "AzureDataLakeStoreSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"id": "Id",
+							"idcourse": "IdCourse",
+							"idstudent": "IdStudent",
+							"value": "Value",
+							"data": "Data",
+							"half": "Half"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ADLSFidelizAlunoScore",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DBFideliAlunoScoreTable",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		]
+	}
+}

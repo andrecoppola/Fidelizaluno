@@ -1,0 +1,14 @@
+{
+	"name": "ADLSFidelizAlunoInputData",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adlsfidelizaluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureDataLakeStoreFile",
+		"typeProperties": {
+			"fileName": "*.csv",
+			"folderPath": "fidelizaluno/input"
+		}
+	}
+}

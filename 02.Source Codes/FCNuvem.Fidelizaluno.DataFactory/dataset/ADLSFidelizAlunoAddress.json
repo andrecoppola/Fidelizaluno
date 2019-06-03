@@ -1,0 +1,66 @@
+{
+	"name": "ADLSFidelizAlunoAddress",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adlsfidelizaluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureDataLakeStoreFile",
+		"structure": [
+			{
+				"name": "id",
+				"type": "Int32"
+			},
+			{
+				"name": "cep",
+				"type": "String"
+			},
+			{
+				"name": "addressline1",
+				"type": "String"
+			},
+			{
+				"name": "addressline2",
+				"type": "String"
+			},
+			{
+				"name": "region",
+				"type": "String"
+			},
+			{
+				"name": "number",
+				"type": "String"
+			},
+			{
+				"name": "city",
+				"type": "String"
+			},
+			{
+				"name": "state",
+				"type": "String"
+			},
+			{
+				"name": "latitude",
+				"type": "Decimal"
+			},
+			{
+				"name": "longitude",
+				"type": "Decimal"
+			}
+		],
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"encodingName": null,
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": true
+			},
+			"fileName": "Address-*.csv",
+			"folderPath": "fidelizaluno/input"
+		}
+	}
+}

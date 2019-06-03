@@ -1,0 +1,59 @@
+{
+	"name": "DBFideliAlunoStudentTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaseFidelizAluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"structure": [
+			{
+				"name": "Id",
+				"type": "Int32"
+			},
+			{
+				"name": "RA",
+				"type": "Int32"
+			},
+			{
+				"name": "EvasionScore",
+				"type": "Decimal"
+			},
+			{
+				"name": "PaymentDay",
+				"type": "Int32"
+			},
+			{
+				"name": "LastPaymentDate",
+				"type": "DateTime"
+			},
+			{
+				"name": "AmountPaymentPendent",
+				"type": "Int32"
+			},
+			{
+				"name": "Distance",
+				"type": "Decimal"
+			},
+			{
+				"name": "MediaScore",
+				"type": "Decimal"
+			},
+			{
+				"name": "IdPerson",
+				"type": "Int32"
+			},
+			{
+				"name": "Overdue",
+				"type": "Boolean"
+			},
+			{
+				"name": "Enrolled",
+				"type": "Boolean"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[Student]"
+		}
+	}
+}

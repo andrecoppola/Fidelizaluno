@@ -1,0 +1,55 @@
+{
+	"name": "DBFideliAlunoPersonTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaseFidelizAluno",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"structure": [
+			{
+				"name": "Id",
+				"type": "Int32"
+			},
+			{
+				"name": "Name",
+				"type": "String"
+			},
+			{
+				"name": "Email",
+				"type": "String"
+			},
+			{
+				"name": "Cpf",
+				"type": "String"
+			},
+			{
+				"name": "TelephoneCelular",
+				"type": "String"
+			},
+			{
+				"name": "TelephoneResidencial",
+				"type": "String"
+			},
+			{
+				"name": "Genre",
+				"type": "String"
+			},
+			{
+				"name": "UrlPicture",
+				"type": "String"
+			},
+			{
+				"name": "ReasonEvasao",
+				"type": "String"
+			},
+			{
+				"name": "IdAddress",
+				"type": "Int32"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[Person]"
+		}
+	}
+}

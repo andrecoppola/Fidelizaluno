@@ -1,0 +1,11 @@
+{
+	"name": "AzureMLFidelizAluno",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "AzureML",
+		"typeProperties": {
+			"mlEndpoint": "{mlEndpoint}",
+			"encryptedCredential": "{encryptedCredential}"
+		}
+	}
+}
