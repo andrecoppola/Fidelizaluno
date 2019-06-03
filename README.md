@@ -1,1 +1,2 @@
 # Fidelizaluno
+O Fidelizaluno visa a retenção de alunos baseada na fidelização. É feita uma análise sobre os dados de seus alunos para se obter a probabilidade destes de abandonarem seus cursos de acordo com as variáveis definidas pela instituição. A partir desta análise, é possível entender quem éo “grupo de risco”. Com os dados compilados, o Fidelizaluno envia para as áreas responsáveis os motivos da possível evasão e indica a ação que deve ser tomada ao setor responsável.
