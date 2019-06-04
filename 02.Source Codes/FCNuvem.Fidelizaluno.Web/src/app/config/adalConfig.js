@@ -1,19 +1,18 @@
 import { AuthenticationContext, adalFetch, withAdalLogin } from 'react-adal';
 
 export const adalConfig = {
-  tenant: 'fcamaracloud.onmicrosoft.com',
-  clientId: 'f5f21169-7ec6-4cb0-a0a4-34083f41bb9b',
+  tenant: '{tenant}',
+  clientId: '{clientId}',
   endpoints: {
-    api: 'f5f21169-7ec6-4cb0-a0a4-34083f41bb9b',
+    api: '{clientId}',
   },
-  cacheLocation: 'localStorage'//,
-  //redirectUri: 'https://fidelizaluno-web.azurewebsites.net/home'
+  cacheLocation: 'localStorage'
 };
 
 export const validateToken = () => {
   let token = getToken();
 
-  return fetch("http://fidelizaluno-api.azurewebsites.net/api/user/validate", {
+  return fetch("{apiUrl}/api/user/validate", {
     headers: {
       'Authorization': 'Bearer ' + token,
     },

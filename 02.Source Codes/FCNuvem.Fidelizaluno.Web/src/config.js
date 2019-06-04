@@ -4,7 +4,7 @@ export const react = {
     //baseUrl: ""
 
     // Ambiente de teste
-    baseUrl: 'https://fidelizaluno-api.azurewebsites.net/api',
+    baseUrl: '{apiUrl}/api',
     alunosRoute: '/student',
     cursoRoute: '/program',
     turmaCourseRoute: '/ClassRoom/Program'
