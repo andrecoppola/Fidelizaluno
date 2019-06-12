@@ -1,0 +1,40 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "accounts_adlafidelizaluno_defaultDataLakeStoreAccount": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "accounts_adlafidelizaluno_dataLakeStoreAccounts": {
+            "defaultValue": null,
+            "type": "Array"
+        },
+        "accounts_adlafidelizaluno_name": {
+            "defaultValue": "adlafidelizaluno",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.DataLakeAnalytics/accounts",
+            "apiVersion": "2016-11-01",
+            "name": "[parameters('accounts_adlafidelizaluno_name')]",
+            "location": "eastus2",
+            "properties": {
+                "defaultDataLakeStoreAccount": "[parameters('accounts_adlafidelizaluno_defaultDataLakeStoreAccount')]",
+                "dataLakeStoreAccounts": "[parameters('accounts_adlafidelizaluno_dataLakeStoreAccounts')]"
+            }
+        },
+        {
+            "type": "Microsoft.DataLakeAnalytics/accounts/dataLakeStoreAccounts",
+            "apiVersion": "2016-11-01",
+            "name": "[concat(parameters('accounts_adlafidelizaluno_name'), '/adlsafidelizaluno')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.DataLakeAnalytics/accounts', parameters('accounts_adlafidelizaluno_name'))]"
+            ],
+            "properties": {}
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "accounts_adlsafidelizaluno_name": {
+            "defaultValue": "adlsafidelizaluno",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.DataLakeStore/accounts",
+            "apiVersion": "2016-11-01",
+            "name": "[parameters('accounts_adlsafidelizaluno_name')]",
+            "location": "eastus2",
+            "properties": {}
+        }
+    ]
+}

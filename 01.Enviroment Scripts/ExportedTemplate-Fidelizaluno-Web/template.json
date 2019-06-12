@@ -1,0 +1,339 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "sites_fidelizaluno_web_name": {
+            "defaultValue": "fidelizaluno-web",
+            "type": "String"
+        },
+        "serverfarms_fidelizaluno_web_externalid": {
+            "defaultValue": "[concat('/subscriptions/{subscriptionId}/resourceGroups/Fidelizaluno/providers/Microsoft.Web/serverfarms/', parameters('sites_fidelizaluno_web_name'))]",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Web/sites",
+            "apiVersion": "2016-08-01",
+            "name": "[parameters('sites_fidelizaluno_web_name')]",
+            "location": "East US 2",
+            "kind": "app",
+            "properties": {
+                "enabled": true,
+                "hostNameSslStates": [
+                    {
+                        "name": "[concat(parameters('sites_fidelizaluno_web_name'), '.azurewebsites.net')]",
+                        "sslState": "Disabled",
+                        "hostType": "Standard"
+                    },
+                    {
+                        "name": "[concat(parameters('sites_fidelizaluno_web_name'), '.scm.azurewebsites.net')]",
+                        "sslState": "Disabled",
+                        "hostType": "Repository"
+                    }
+                ],
+                "serverFarmId": "[parameters('serverfarms_fidelizaluno_web_externalid')]",
+                "reserved": false,
+                "scmSiteAlsoStopped": false,
+                "clientAffinityEnabled": true,
+                "clientCertEnabled": false,
+                "hostNamesDisabled": false,
+                "containerSize": 0,
+                "dailyMemoryTimeQuota": 0,
+                "httpsOnly": true
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/config",
+            "apiVersion": "2016-08-01",
+            "name": "[concat(parameters('sites_fidelizaluno_web_name'), '/web')]",
+            "location": "East US 2",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_fidelizaluno_web_name'))]"
+            ],
+            "properties": {
+                "numberOfWorkers": 1,
+                "defaultDocuments": [
+                    "Default.htm",
+                    "Default.html",
+                    "Default.asp",
+                    "index.htm",
+                    "index.html",
+                    "iisstart.htm",
+                    "default.aspx",
+                    "index.php",
+                    "hostingstart.html"
+                ],
+                "netFrameworkVersion": "v4.0",
+                "phpVersion": "5.6",
+                "pythonVersion": "",
+                "nodeVersion": "",
+                "linuxFxVersion": "",
+                "requestTracingEnabled": false,
+                "remoteDebuggingEnabled": false,
+                "remoteDebuggingVersion": "VS2017",
+                "httpLoggingEnabled": false,
+                "logsDirectorySizeLimit": 35,
+                "detailedErrorLoggingEnabled": false,
+                "publishingUsername": "$[parameters('sites_fidelizaluno_web_name')]",
+                "scmType": "VSTSRM",
+                "use32BitWorkerProcess": true,
+                "webSocketsEnabled": false,
+                "alwaysOn": false,
+                "appCommandLine": "",
+                "managedPipelineMode": "Integrated",
+                "virtualApplications": [
+                    {
+                        "virtualPath": "/",
+                        "physicalPath": "site\\wwwroot",
+                        "preloadEnabled": false,
+                        "virtualDirectories": null
+                    }
+                ],
+                "winAuthAdminState": 0,
+                "winAuthTenantState": 0,
+                "customAppPoolIdentityAdminState": false,
+                "customAppPoolIdentityTenantState": false,
+                "loadBalancing": "LeastRequests",
+                "routingRules": [],
+                "experiments": {
+                    "rampUpRules": []
+                },
+                "autoHealEnabled": false,
+                "vnetName": "",
+                "siteAuthEnabled": false,
+                "siteAuthSettings": {
+                    "enabled": null,
+                    "unauthenticatedClientAction": null,
+                    "tokenStoreEnabled": null,
+                    "allowedExternalRedirectUrls": null,
+                    "defaultProvider": null,
+                    "clientId": null,
+                    "clientSecret": null,
+                    "clientSecretCertificateThumbprint": null,
+                    "issuer": null,
+                    "allowedAudiences": null,
+                    "additionalLoginParams": null,
+                    "isAadAutoProvisioned": false,
+                    "googleClientId": null,
+                    "googleClientSecret": null,
+                    "googleOAuthScopes": null,
+                    "facebookAppId": null,
+                    "facebookAppSecret": null,
+                    "facebookOAuthScopes": null,
+                    "twitterConsumerKey": null,
+                    "twitterConsumerSecret": null,
+                    "microsoftAccountClientId": null,
+                    "microsoftAccountClientSecret": null,
+                    "microsoftAccountOAuthScopes": null
+                },
+                "localMySqlEnabled": false,
+                "http20Enabled": false,
+                "minTlsVersion": "1.2",
+                "ftpsState": "AllAllowed",
+                "reservedInstanceCount": 0
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/deployments",
+            "apiVersion": "2016-08-01",
+            "name": "[concat(parameters('sites_fidelizaluno_web_name'), '/210fd5c3dfe94e09bb337ad71556ae83')]",
+            "location": "East US 2",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_fidelizaluno_web_name'))]"
+            ],
+            "properties": {
+                "id": "210fd5c3dfe94e09bb337ad71556ae83",
+                "status": 4,
+                "author_email": "N/A",
+                "author": "N/A",
+                "deployer": "VSTS",
+                "message": "{\"type\":\"deployment\",\"commitId\":\"c7e4ff50a678a0bb751be5209970f435c02aa685\",\"buildId\":\"116\",\"releaseId\":\"85\",\"buildNumber\":\"116\",\"releaseName\":\"Release-12\",\"repoProvider\":\"TfsGit\",\"repoName\":\"FCNuvem.Fidelizaluno.Web\",\"collectionUrl\":\"https://dev.azure.com/fcnuvem/\",\"teamProject\":\"e5a05677-8038-4ec4-a3c2-e196b5c44e0e\",\"slotName\":\"production\"}",
+                "start_time": "2019-04-23T17:27:28.327574Z",
+                "end_time": "2019-04-23T17:27:28.7204214Z",
+                "active": false
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/deployments",
+            "apiVersion": "2016-08-01",
+            "name": "[concat(parameters('sites_fidelizaluno_web_name'), '/22f745fa14df4ce4b2ab73659de73d80')]",
+            "location": "East US 2",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_fidelizaluno_web_name'))]"
+            ],
+            "properties": {
+                "id": "22f745fa14df4ce4b2ab73659de73d80",
+                "status": 4,
+                "author_email": "N/A",
+                "author": "N/A",
+                "deployer": "VSTS",
+                "message": "{\"type\":\"deployment\",\"commitId\":\"21e2f661ba6316db6094f860ee06a71366fd7f30\",\"buildId\":\"113\",\"releaseId\":\"82\",\"buildNumber\":\"113\",\"releaseName\":\"Release-9\",\"repoProvider\":\"TfsGit\",\"repoName\":\"FCNuvem.Fidelizaluno.Web\",\"collectionUrl\":\"https://dev.azure.com/fcnuvem/\",\"teamProject\":\"e5a05677-8038-4ec4-a3c2-e196b5c44e0e\",\"slotName\":\"production\"}",
+                "start_time": "2019-04-23T17:05:32.0790901Z",
+                "end_time": "2019-04-23T17:05:32.4384713Z",
+                "active": false
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/deployments",
+            "apiVersion": "2016-08-01",
+            "name": "[concat(parameters('sites_fidelizaluno_web_name'), '/2c7402eb06f144e6b769451455b524da')]",
+            "location": "East US 2",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_fidelizaluno_web_name'))]"
+            ],
+            "properties": {
+                "id": "2c7402eb06f144e6b769451455b524da",
+                "status": 4,
+                "author_email": "N/A",
+                "author": "N/A",
+                "deployer": "VSTS",
+                "message": "{\"type\":\"deployment\",\"commitId\":\"6e9ea77212d9a102d75d1dfd9a051259ff68a6a5\",\"buildId\":\"120\",\"releaseId\":\"89\",\"buildNumber\":\"120\",\"releaseName\":\"Release-16\",\"repoProvider\":\"TfsGit\",\"repoName\":\"FCNuvem.Fidelizaluno.Web\",\"collectionUrl\":\"https://dev.azure.com/fcnuvem/\",\"teamProject\":\"e5a05677-8038-4ec4-a3c2-e196b5c44e0e\",\"slotName\":\"production\"}",
+                "start_time": "2019-04-24T02:08:25.1068012Z",
+                "end_time": "2019-04-24T02:08:25.512938Z",
+                "active": false
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/deployments",
+            "apiVersion": "2016-08-01",
+            "name": "[concat(parameters('sites_fidelizaluno_web_name'), '/459e1f7ea7f74396b3ee3442de582b34')]",
+            "location": "East US 2",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_fidelizaluno_web_name'))]"
+            ],
+            "properties": {
+                "id": "459e1f7ea7f74396b3ee3442de582b34",
+                "status": 4,
+                "author_email": "N/A",
+                "author": "N/A",
+                "deployer": "VSTS",
+                "message": "{\"type\":\"deployment\",\"commitId\":\"cc28d89d5333a67e14f958c346c0f2aa32551d1e\",\"buildId\":\"114\",\"releaseId\":\"83\",\"buildNumber\":\"114\",\"releaseName\":\"Release-10\",\"repoProvider\":\"TfsGit\",\"repoName\":\"FCNuvem.Fidelizaluno.Web\",\"collectionUrl\":\"https://dev.azure.com/fcnuvem/\",\"teamProject\":\"e5a05677-8038-4ec4-a3c2-e196b5c44e0e\",\"slotName\":\"production\"}",
+                "start_time": "2019-04-23T17:06:19.6474361Z",
+                "end_time": "2019-04-23T17:06:20.0536877Z",
+                "active": false
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/deployments",
+            "apiVersion": "2016-08-01",
+            "name": "[concat(parameters('sites_fidelizaluno_web_name'), '/d36e4767df7f477aaa4a50ceddd419d0')]",
+            "location": "East US 2",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_fidelizaluno_web_name'))]"
+            ],
+            "properties": {
+                "id": "d36e4767df7f477aaa4a50ceddd419d0",
+                "status": 4,
+                "author_email": "N/A",
+                "author": "N/A",
+                "deployer": "VSTS",
+                "message": "{\"type\":\"deployment\",\"commitId\":\"5d86c3e0e40d18f6c83b29dec48a89566a549a96\",\"buildId\":\"118\",\"releaseId\":\"87\",\"buildNumber\":\"118\",\"releaseName\":\"Release-14\",\"repoProvider\":\"TfsGit\",\"repoName\":\"FCNuvem.Fidelizaluno.Web\",\"collectionUrl\":\"https://dev.azure.com/fcnuvem/\",\"teamProject\":\"e5a05677-8038-4ec4-a3c2-e196b5c44e0e\",\"slotName\":\"production\"}",
+                "start_time": "2019-04-24T01:49:16.8502527Z",
+                "end_time": "2019-04-24T01:49:17.241403Z",
+                "active": false
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/deployments",
+            "apiVersion": "2016-08-01",
+            "name": "[concat(parameters('sites_fidelizaluno_web_name'), '/de6cb84808ec4c08ae4fe102fe5f0a7c')]",
+            "location": "East US 2",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_fidelizaluno_web_name'))]"
+            ],
+            "properties": {
+                "id": "de6cb84808ec4c08ae4fe102fe5f0a7c",
+                "status": 4,
+                "author_email": "N/A",
+                "author": "N/A",
+                "deployer": "VSTS",
+                "message": "{\"type\":\"deployment\",\"commitId\":\"66d7165c255c2e40fdfadea56a88aa795671135f\",\"buildId\":\"121\",\"releaseId\":\"90\",\"buildNumber\":\"121\",\"releaseName\":\"Release-17\",\"repoProvider\":\"TfsGit\",\"repoName\":\"FCNuvem.Fidelizaluno.Web\",\"collectionUrl\":\"https://dev.azure.com/fcnuvem/\",\"teamProject\":\"e5a05677-8038-4ec4-a3c2-e196b5c44e0e\",\"slotName\":\"production\"}",
+                "start_time": "2019-04-24T08:28:02.1557133Z",
+                "end_time": "2019-04-24T08:28:02.5151874Z",
+                "active": true
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/deployments",
+            "apiVersion": "2016-08-01",
+            "name": "[concat(parameters('sites_fidelizaluno_web_name'), '/e9129ffb3f464c7b80b8b4b51c21fbac')]",
+            "location": "East US 2",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_fidelizaluno_web_name'))]"
+            ],
+            "properties": {
+                "id": "e9129ffb3f464c7b80b8b4b51c21fbac",
+                "status": 4,
+                "author_email": "N/A",
+                "author": "N/A",
+                "deployer": "VSTS",
+                "message": "{\"type\":\"deployment\",\"commitId\":\"d601d11d1f5226d26ca59c943a55af788892104b\",\"buildId\":\"117\",\"releaseId\":\"86\",\"buildNumber\":\"117\",\"releaseName\":\"Release-13\",\"repoProvider\":\"TfsGit\",\"repoName\":\"FCNuvem.Fidelizaluno.Web\",\"collectionUrl\":\"https://dev.azure.com/fcnuvem/\",\"teamProject\":\"e5a05677-8038-4ec4-a3c2-e196b5c44e0e\",\"slotName\":\"production\"}",
+                "start_time": "2019-04-24T01:40:58.9510109Z",
+                "end_time": "2019-04-24T01:40:59.3097608Z",
+                "active": false
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/deployments",
+            "apiVersion": "2016-08-01",
+            "name": "[concat(parameters('sites_fidelizaluno_web_name'), '/fb5c5a8b2fce40089a3660b7510f74eb')]",
+            "location": "East US 2",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_fidelizaluno_web_name'))]"
+            ],
+            "properties": {
+                "id": "fb5c5a8b2fce40089a3660b7510f74eb",
+                "status": 4,
+                "author_email": "N/A",
+                "author": "N/A",
+                "deployer": "VSTS",
+                "message": "{\"type\":\"deployment\",\"commitId\":\"c7935fd23d2d234a0888667e471393386867bff3\",\"buildId\":\"119\",\"releaseId\":\"88\",\"buildNumber\":\"119\",\"releaseName\":\"Release-15\",\"repoProvider\":\"TfsGit\",\"repoName\":\"FCNuvem.Fidelizaluno.Web\",\"collectionUrl\":\"https://dev.azure.com/fcnuvem/\",\"teamProject\":\"e5a05677-8038-4ec4-a3c2-e196b5c44e0e\",\"slotName\":\"production\"}",
+                "start_time": "2019-04-24T01:58:19.354586Z",
+                "end_time": "2019-04-24T01:58:19.7147431Z",
+                "active": false
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/deployments",
+            "apiVersion": "2016-08-01",
+            "name": "[concat(parameters('sites_fidelizaluno_web_name'), '/fe20b972c8894ba78c7a53bb0eb631b3')]",
+            "location": "East US 2",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_fidelizaluno_web_name'))]"
+            ],
+            "properties": {
+                "id": "fe20b972c8894ba78c7a53bb0eb631b3",
+                "status": 4,
+                "author_email": "N/A",
+                "author": "N/A",
+                "deployer": "VSTS",
+                "message": "{\"type\":\"deployment\",\"commitId\":\"f014ddbecb1ceec7ed065accefb0c5fb62b607f9\",\"buildId\":\"112\",\"releaseId\":\"81\",\"buildNumber\":\"112\",\"releaseName\":\"Release-8\",\"repoProvider\":\"TfsGit\",\"repoName\":\"FCNuvem.Fidelizaluno.Web\",\"collectionUrl\":\"https://dev.azure.com/fcnuvem/\",\"teamProject\":\"e5a05677-8038-4ec4-a3c2-e196b5c44e0e\",\"slotName\":\"production\"}",
+                "start_time": "2019-04-23T15:02:01.3011593Z",
+                "end_time": "2019-04-23T15:02:01.7230432Z",
+                "active": false
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/deployments",
+            "apiVersion": "2016-08-01",
+            "name": "[concat(parameters('sites_fidelizaluno_web_name'), '/ffc7210504264e9ea285e570b351e5c8')]",
+            "location": "East US 2",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_fidelizaluno_web_name'))]"
+            ],
+            "properties": {
+                "id": "ffc7210504264e9ea285e570b351e5c8",
+                "status": 4,
+                "author_email": "N/A",
+                "author": "N/A",
+                "deployer": "VSTS",
+                "message": "{\"type\":\"deployment\",\"commitId\":\"718b59ba34f4de8419465664f3822a98a81aeed8\",\"buildId\":\"115\",\"releaseId\":\"84\",\"buildNumber\":\"115\",\"releaseName\":\"Release-11\",\"repoProvider\":\"TfsGit\",\"repoName\":\"FCNuvem.Fidelizaluno.Web\",\"collectionUrl\":\"https://dev.azure.com/fcnuvem/\",\"teamProject\":\"e5a05677-8038-4ec4-a3c2-e196b5c44e0e\",\"slotName\":\"production\"}",
+                "start_time": "2019-04-23T17:26:55.3995012Z",
+                "end_time": "2019-04-23T17:26:55.7588844Z",
+                "active": false
+            }
+        }
+    ]
+}
